@@ -51,8 +51,8 @@ struct LandmarkObs {
 };
 
 inline double Gaussian2D(double x, double y, double mx, double my, double sx, double sy) {
-	return 1.0/(2.0*M_PI*sx*sy) * exp( (-1*(x-mx)*(x-mx) - (y-my)*(y-my)) / (2*sx*sx*sy*sy) );
-
+	//return 1.0/(2.0*M_PI*sx*sy) * exp( (-1*(x-mx)*(x-mx) - (y-my)*(y-my)) / (2*sx*sx*sy*sy) );
+	return 1.0/(2.0*M_PI*sx*sy) * exp( (-1*(x-mx)*(x-mx)/(2*sx*sx) - (y-my)*(y-my)/(2*sy*sy)) );
 }
 
 
