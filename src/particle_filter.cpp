@@ -14,6 +14,7 @@
 #include <sstream>
 #include <string>
 #include <iterator>
+#include <ctime>
 
 #include "particle_filter.h"
 #include "helper_functions.h"
@@ -30,7 +31,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 
 	time_step = 0.1;
 
-  	default_random_engine generator;
+  	default_random_engine generator(time(0));
   	normal_distribution <double> dist_x(x, std[0]);
   	normal_distribution <double> dist_y(y, std[1]);
   	normal_distribution <double> dist_theta(theta, std[2]);
