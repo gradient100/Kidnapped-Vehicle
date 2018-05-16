@@ -19,6 +19,8 @@
 const double M_PI = 3.14159265358979323846;
 #endif
 
+using namespace std;
+
 /*
  * Struct representing one position/control measurement.
  */
@@ -48,6 +50,12 @@ struct LandmarkObs {
 	double y;			// Local (vehicle coordinates) y position of landmark observation [m]
 };
 
+inline double Gaussian2D(double x, double y, double mx, double my, double sx, double sy) {
+	return 1.0/(2.0*M_PI*sx*sy) * exp( (-1*(x-mx)*(x-mx) - (y-my)*(y-my)) / (2*sx*sx*sy*sy) );
+
+}
+
+
 /*
  * Computes the Euclidean distance between two 2D points.
  * @param (x1,y1) x and y coordinates of first point
@@ -57,6 +65,7 @@ struct LandmarkObs {
 inline double dist(double x1, double y1, double x2, double y2) {
 	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
+
 
 inline double * getError(double gt_x, double gt_y, double gt_theta, double pf_x, double pf_y, double pf_theta) {
 	static double error[3];

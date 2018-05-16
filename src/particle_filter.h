@@ -30,7 +30,7 @@ class ParticleFilter {
 	// Number of particles to draw
 	int num_particles; 
 	
-	
+	double time_step;
 	
 	// Flag, if filter is initialized
 	bool is_initialized;
@@ -61,6 +61,8 @@ public:
 	 */
 	void init(double x, double y, double theta, double std[]);
 
+	void print();
+
 	/**
 	 * prediction Predicts the state for the next time step
 	 *   using the process model.
@@ -78,8 +80,10 @@ public:
 	 * @param predicted Vector of predicted landmark observations
 	 * @param observations Vector of landmark observations
 	 */
-	void dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations);
+	//void dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations);
+	void dataAssociation(const Map & predicted, std::vector<LandmarkObs>& observations);
 	
+
 	/**
 	 * updateWeights Updates the weights for each particle based on the likelihood of the 
 	 *   observed measurements. 
